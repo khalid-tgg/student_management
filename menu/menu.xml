@@ -1,0 +1,19 @@
+<odoo>
+    <menuitem name="Students Management"
+            id="menu_student_root"
+    />
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">student</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="menu_student" model="ir.ui.menu">
+        <field name="name">Students</field>
+        <field name="action"
+            eval="'ir.actions.act_window,%d' % action_student" />
+        <field name="parent_id" eval="ref('student_management.menu_student_root')" />
+        <field name="sequence">1</field>
+    </record>
+</odoo>

@@ -1,0 +1,82 @@
+<odoo>
+    <record id="view_student_tree" model="ir.ui.view">
+        <field name="name">student.tree</field>
+        <field name="model">student</field>
+        <field name="arch" type="xml">
+            <tree string="Students">
+                <field name="name"/>
+                <field name="id_student"/>
+                <field name="gender"/>
+                <field name="current_gpa"/>
+                <field name="current_classification"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">student.form</field>
+        <field name="model">student</field>
+        <field name="arch" type="xml">
+            <form string="Student">
+                <sheet>
+	                <field name="image" widget="image" class="oe_avatar"/>
+                    <group col="4">
+	                    <group colspan="2">
+		                    <field name="name"></field>
+		                    <field name="id_student"></field>
+		                    <field name="gender"></field>
+	                    </group>
+		                <group colspan="2">
+			                <field name="date_of_birth"></field>
+			                <field name="id_number"></field>
+	                        <field name="address"></field>
+	                        <field name="phone_number"></field>
+			                <field name="current_gpa"></field>
+			                <field name="current_classification"></field>
+		                </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Internal Notes">
+                            <field name="internal_note_ids">
+                                <tree name="Internal Notes" editable="bottom">
+                                    <field name="create_date" readonly="1"></field>
+                                    <field name="create_uid" readonly="1"></field>
+                                    <field name="description"></field>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="view_student_search" model="ir.ui.view">
+        <field name="name">student.search</field>
+        <field name="model">student</field>
+        <field name="arch" type="xml">
+            <search string="Student Search">
+                <field name="name"/>
+                <field name="id_student"/>
+                <field name="id_number"/>
+                <field name="date_of_birth"/>
+                <field name="address"/>
+                <field name="phone_number"/>
+	            <filter string="Excellent" name="filter_excellent" domain="[('current_classification','=', 'excellent')]" />
+	            <filter string="Good" name="filter_good" domain="[('current_classification','=', 'good')]" />
+	            <filter string="Average" name="filter_average" domain="[('current_classification','=', 'average')]" />
+	            <filter string="Poor" name="filter_poor" domain="[('current_classification','=', 'poor')]" />
+                <separator/>
+	            <filter name="group_by_gender" string="Gender"
+                        context="{'group_by':'gender'}"/>
+	            <filter name="group_by_current_classification" string="Current Classification"
+                        context="{'group_by':'current_classification'}"/>
+
+
+            </search>
+        </field>
+    </record>
+
+</odoo>
